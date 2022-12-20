@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #4fc4cf;
+}
+
+.App {
+  background: #fffffe;
+  width: 50vw;
+  border: 3px solid #000;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.option {
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px 10px;
+  background: #fffffe;
+  border: 3px solid #000;
+  border-radius: 5px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.option:hover {
+  background-color: #4fc4cf;
+}
