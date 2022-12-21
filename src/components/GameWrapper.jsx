@@ -9,6 +9,7 @@ function getRandomInt(min, max) {
 const GameWrapper = ({ countries }) => {
   const [correct, setCorrect] = useState({});
   const [options, setOptions] = useState([]);
+  const [selectedAnswer, setSelectedAnswer] = useState(undefined);
 
   useEffect(() => {
     const randomCountries = [];
@@ -19,8 +20,9 @@ const GameWrapper = ({ countries }) => {
       }
       randomCountries.push(country);
     }
-    const correctCountry = randomCountries[getRandomInt(0, randomCountries.length)]
-    setCorrect(correctCountry)
+    const correctCountry =
+      randomCountries[getRandomInt(0, randomCountries.length)];
+    setCorrect(correctCountry);
     setOptions(randomCountries);
   }, []);
 
@@ -29,57 +31,32 @@ const GameWrapper = ({ countries }) => {
     return countries[randomIndex];
   };
 
-  const handleClick = (event) => {
-    const value = event.target.value
-    if (value === correct.capital) {
-      alert("That's rigth")
-    } else {
-      alert(`Wrong, it was ${correct.name}`)
-    }
+  const handleClick = (answer) => {
+    setSelectedAnswer(answer);
   };
 
   return (
     <div className="game-wrapper">
-      <div className="Question">{correct.capital} is the capital of</div>
+      <div className="Question">
+        <b id="capital">{correct.capital}</b> is the capital of
+      </div>
       {options.map((option, index) => (
         <button
           key={index}
           className="option"
-          onClick={handleClick}
+          id={
+            selectedAnswer
+              ? option.capital === correct.capital
+                ? "correct"
+                : "incorrect"
+              : ""
+          }
+          onClick={() => handleClick(option.capital)}
           value={option.capital}
         >
           {option.flag} {option.name}
         </button>
       ))}
-      {/* <button
-        className="option"
-        onClick={handleClick}
-        value={correctCountry.name}
-      >
-        {correctCountry.flag} {correctCountry.name}
-      </button>
-      <button className="option">
-        {correctCountry.flag} {correctCountry.name}
-      </button>
-      <button className="option">
-        {correctCountry.flag} {correctCountry.name}
-      </button>
-      <button className="option">
-        {correctCountry.flag} {correctCountry.name}
-      </button> */}
-      {/* <h1>List of Countries</h1>
-      {countries.map((country, index) =>
-        country.capital ? (
-          <div key={index}>
-            {country.flag} The capital of {country.name} is {country.capital}{" "}
-            {country.flag}
-          </div>
-        ) : (
-          <div key={index}>
-            {country.flag} {country.name} has no capital {country.flag}
-          </div>
-        )
-      )} */}
     </div>
   );
 };
