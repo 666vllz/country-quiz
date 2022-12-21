@@ -25,8 +25,23 @@ body {
   border-radius: 5px;
   font-size: 15px;
   text-align: left;
+  transition-property: background-color;
+  transition-duration: 0.7s;
+  transition-timing-function: linear;
 }
 
 .option:hover {
   background-color: #4fc4cf;
+}
+
+#correct {
+  background: greenyellow;
+}
+
+#incorrect {
+  background: #ff6e6c;
+}
+
+#capital {
+  text-decoration: underline;
 }
